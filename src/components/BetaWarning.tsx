@@ -4,7 +4,7 @@ import Button from "./elements/Button.tsx"
 import { useTranslation } from "react-i18next"
 import { useAtomState } from "@zedux/react"
 import { componentState } from "../state/componentState.tsx"
-import Requirments from "./Requirments.tsx"
+import Requirements from "./Requirements.tsx"
 
 export default function BetaWarning() {
     const [ t ] = useTranslation()
@@ -52,7 +52,7 @@ export default function BetaWarning() {
                                     </div>
 
                                     <div className="mt-4">
-                                        <Button label={t("Continue")} submit={() => setComponent(<Requirments />)}></Button>
+                                        <Button label={t("Continue")} submit={() => setComponent(<Requirements />)}></Button>
                                     </div>
                                 </Dialog.Panel>
                             </Transition.Child>
