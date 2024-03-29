@@ -1,7 +1,7 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { Fragment } from 'react'
+import { Dialog, Transition } from "@headlessui/react"
+import { Fragment } from "react"
 import Button from "./elements/Button.tsx"
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
 export default function BetaWarning() {
     const [ t ] = useTranslation()
