@@ -2,9 +2,13 @@ import { Dialog, Transition } from "@headlessui/react"
 import { Fragment } from "react"
 import Button from "./elements/Button.tsx"
 import { useTranslation } from "react-i18next"
+import { useAtomState } from "@zedux/react"
+import { componentState } from "../state/componentState.tsx"
+import Requirments from "./Requirments.tsx"
 
 export default function BetaWarning() {
     const [ t ] = useTranslation()
+    const [, setComponent] = useAtomState(componentState)
 
     return (
         <>
@@ -48,7 +52,7 @@ export default function BetaWarning() {
                                     </div>
 
                                     <div className="mt-4">
-                                        <Button label={t("Continue")} submit={() => {}}></Button>
+                                        <Button label={t("Continue")} submit={() => setComponent(<Requirments />)}></Button>
                                     </div>
                                 </Dialog.Panel>
                             </Transition.Child>
