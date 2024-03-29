@@ -3,9 +3,13 @@
 
 mod requirements {
     pub mod check_uefi;
+    pub mod check_freespace;
 }
 
-use requirements::check_uefi::check_uefi;
+use requirements::{
+    check_uefi::check_uefi,
+    check_freespace::check_freespace
+};
 use std::fs;
 use tauri_plugin_log::{Target, TargetKind};
 
@@ -26,7 +30,7 @@ fn main() {
                 .build(),
         )
         .plugin(tauri_plugin_shell::init())
-        .invoke_handler(tauri::generate_handler![check_uefi])
+        .invoke_handler(tauri::generate_handler![check_uefi, check_freespace])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

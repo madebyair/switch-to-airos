@@ -8,7 +8,8 @@ import { info, error } from "@tauri-apps/plugin-log"
 const Requirements = () => {
     const [ t ] = useTranslation()
     const [reqs, setReqs] = useState({
-        system_is_running_uefi: false
+        system_is_running_uefi: false,
+        at_least_64_gb_freespace: false
     })
 
     useEffect(() => {
@@ -25,6 +26,20 @@ const Requirements = () => {
                 return
             }
             error("System is running LEGACY! (wtf so computers without UEFI still exists!?)")
+        })
+
+        invoke("check_freespace").then((r) => {
+            if (r) {
+                info("We got at least 64GB of free space :smile_with_sunglasses:")
+                setReqs(prevState => {
+                    return {
+                        ...prevState,
+                        at_least_64_gb_freespace: true
+                    }
+                })
+                return
+            }
+            error("Not enough free space")
         })
     }, [])
 
