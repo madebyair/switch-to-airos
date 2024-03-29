@@ -1,8 +1,14 @@
 import { BarLoader } from "react-spinners"
 import { useTranslation } from "react-i18next"
+import { invoke } from "@tauri-apps/api/core"
+import { useEffect } from "react"
 
-const Requirments = () => {
+const Requirements = () => {
     const [ t ] = useTranslation()
+
+    useEffect(() => {
+        invoke("check_uefi")
+    }, [])
 
     return (
         <div className="h-full w-full flex">
@@ -27,4 +33,4 @@ const Requirments = () => {
     )
 }
 
-export default Requirments
+export default Requirements
