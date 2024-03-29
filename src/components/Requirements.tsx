@@ -1,13 +1,31 @@
 import { BarLoader } from "react-spinners"
 import { useTranslation } from "react-i18next"
 import { invoke } from "@tauri-apps/api/core"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import { info, error } from "@tauri-apps/plugin-log"
+
 
 const Requirements = () => {
     const [ t ] = useTranslation()
+    const [reqs, setReqs] = useState({
+        system_is_running_uefi: false
+    })
 
     useEffect(() => {
-        invoke("check_uefi")
+        info("Starting requirements check")
+        invoke("check_uefi").then((r) => {
+            if (r) {
+                info("System is running UEFI")
+                setReqs(prevState => {
+                    return {
+                        ...prevState,
+                        system_is_running_uefi: true
+                    }
+                })
+                return
+            }
+            error("System is running LEGACY! (wtf so computers without UEFI still exists!?)")
+        })
     }, [])
 
     return (

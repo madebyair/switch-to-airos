@@ -1,8 +1,9 @@
 use std::process::Command;
 use std::thread;
+use std::fs;
 
 #[tauri::command]
-pub fn check_uefi() {
+pub fn check_uefi() -> bool {
     let handle = thread::spawn(|| {
         let output = Command::new("powershell")
             .arg("-Command")
@@ -18,4 +19,8 @@ pub fn check_uefi() {
     });
 
     handle.join().unwrap();
+
+    let file = fs::read_to_string("C:\\airos\\bcdedit").unwrap();
+
+    file.contains("\\WINDOWS\\system32\\winload.efi")
 }
