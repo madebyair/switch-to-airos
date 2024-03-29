@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg {
+    background: url("/src/assets/background.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
