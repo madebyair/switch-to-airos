@@ -4,7 +4,7 @@ use std::fs;
 
 #[tauri::command]
 pub fn check_uefi() -> bool {
-    fs::write("C:\\airos\\bcdedit", "");
+    let _ = fs::write("C:\\airos\\bcdedit", "");
 
     let handle = thread::spawn(|| {
         let output = Command::new("powershell")
