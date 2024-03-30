@@ -14,8 +14,8 @@ use std::fs;
 use tauri_plugin_log::{Target, TargetKind};
 
 fn main() {
+    fs::remove_dir_all("C:\\airos").unwrap_or(());
     fs::create_dir("C:\\airos").unwrap_or(());
-    fs::remove_file("C:\\airos\\current.log").unwrap_or(());
 
     tauri::Builder::default()
         .plugin(tauri_plugin_os::init())
