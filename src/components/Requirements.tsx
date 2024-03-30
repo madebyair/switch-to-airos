@@ -53,6 +53,16 @@ const Requirements = () => {
         })
     }, [])
 
+    useEffect(() => {
+        if (Object.values(reqs).every(value => value !== null)) {
+            if (Object.values(reqs).every(value => value == true)) {
+                info("All requirements are met")
+            } else {
+                error("At least one requirement are not met")
+            }
+        }
+    }, [reqs])
+
     return (
         <div className="h-full w-full flex">
             <div className="h-36 w-64 m-auto relative">
