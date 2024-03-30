@@ -5,5 +5,10 @@
   "You are now using beta of Airos": "You are now using beta of Airos",
   "You are currently using the beta version of Airos. This is associated with a large number of bugs and system instability. Currently, no stable version of the system has been released. When we release the stable release, you will need to download an update package approximately ~2GB in size. We do not currently recommend using this system on your main computer.": "You are currently using the beta version of Airos. This is associated with a large number of bugs and system instability. Currently, no stable version of the system has been released. When we release the stable release, you will need to download an update package approximately ~2GB in size. We do not currently recommend using this system on your main computer.",
   "BAD THINGS MAY HAPPEN IF YOU DON'T READ THIS": "BAD THINGS MAY HAPPEN IF YOU DON'T READ THIS",
-  "Just a second": "Just a second"
+  "Just a second": "Just a second",
+  "Some of the requirements are not met": "Some of the requirements are not met",
+  "System is running UEFI": "System is running UEFI",
+  "Met": "Met",
+  "Not met": "Not met",
+  "You may be able to install the Airos system using the standard installer. (without this app)": "You may be able to install the Airos system using the standard installer. (without this app)"
 }

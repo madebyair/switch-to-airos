@@ -3,10 +3,13 @@ import { useTranslation } from "react-i18next"
 import { invoke } from "@tauri-apps/api/core"
 import { useEffect, useState } from "react"
 import { info, error } from "@tauri-apps/plugin-log"
+import { useAtomState } from "@zedux/react"
+import { componentState } from "../state/componentState.tsx"
+import CheckResults from "./CheckResults.tsx"
 
 type Booleanish = boolean | null
 
-interface RequirementsState {
+export interface RequirementsState {
     system_is_running_uefi: Booleanish
     at_least_64_gb_freespace: Booleanish
 }
@@ -17,6 +20,7 @@ const Requirements = () => {
         system_is_running_uefi: null,
         at_least_64_gb_freespace: null
     })
+    const [, setComponent] = useAtomState(componentState)
 
     useEffect(() => {
         info("Starting requirements check")
@@ -58,6 +62,7 @@ const Requirements = () => {
             if (Object.values(reqs).every(value => value == true)) {
                 info("All requirements are met")
             } else {
+                setComponent(<CheckResults reqs={reqs} />)
                 error("At least one requirement are not met")
             }
         }
