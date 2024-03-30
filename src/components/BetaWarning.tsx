@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next"
 import { useAtomState } from "@zedux/react"
 import { componentState } from "../state/componentState.tsx"
 import Requirements from "./Requirements.tsx"
+import { warn } from "@tauri-apps/plugin-log"
 
 export default function BetaWarning() {
     const [ t ] = useTranslation()
@@ -52,7 +53,10 @@ export default function BetaWarning() {
                                     </div>
 
                                     <div className="mt-4">
-                                        <Button label={t("Continue")} submit={() => setComponent(<Requirements />)}></Button>
+                                        <Button label={t("Continue")} submit={() =>  {
+                                            setComponent(<Requirements />)
+                                            warn("User accepted beta warning")
+                                        }}></Button>
                                     </div>
                                 </Dialog.Panel>
                             </Transition.Child>
