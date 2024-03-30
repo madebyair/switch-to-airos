@@ -6,6 +6,7 @@ import { info, error } from "@tauri-apps/plugin-log"
 import { useAtomState } from "@zedux/react"
 import { componentState } from "../state/componentState.tsx"
 import CheckResults from "./CheckResults.tsx"
+import InstallMethods from "./InstallMethods.tsx"
 
 type Booleanish = boolean | null
 
@@ -61,6 +62,7 @@ const Requirements = () => {
         if (Object.values(reqs).every(value => value !== null)) {
             if (Object.values(reqs).every(value => value == true)) {
                 info("All requirements are met")
+                setComponent(<InstallMethods />)
             } else {
                 setComponent(<CheckResults reqs={reqs} />)
                 error("At least one requirement are not met")

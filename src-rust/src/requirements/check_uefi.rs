@@ -1,28 +1,24 @@
 use std::process::Command;
 use std::thread;
 use std::fs;
+use std::time::Duration;
 
 #[tauri::command]
 pub fn check_uefi() -> bool {
-    let _ = fs::write("C:\\airos\\bcdedit", "");
+    Command::new("powershell")
+        .arg("-Command")
+        .arg(
+            "Start-Process cmd.exe -ArgumentList '/c bcdedit > C:\\airos\\bcdedit' -Verb RunAs"
+        )
+        .output()
+        .expect("failed to execute process");
 
-    let handle = thread::spawn(|| {
-        let output = Command::new("powershell")
-            .arg("-Command")
-            .arg(
-                "Start-Process cmd.exe -ArgumentList '/c bcdedit > C:\\airos\\bcdedit' -Verb RunAs",
-            )
-            .output()
-            .expect("failed to execute process");
+    let millis = Duration::from_millis(500);
 
-        println!("status: {}", output.status);
-        println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
-        println!("stderr: {}", String::from_utf8_lossy(&output.stderr));
-    });
+    thread::sleep(millis);
 
-    handle.join().unwrap();
 
     let file = fs::read_to_string("C:\\airos\\bcdedit").unwrap();
 
-    file.contains("\\WINDOWS\\system32\\winload.efi")
+    file.contains("winload.efi")
 }
