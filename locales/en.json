@@ -17,7 +17,13 @@
   "Erase ALL data and install Airos": "Erase ALL data and install Airos",
   "Delete ALL data, and install Airos. All your apps, documents and files will be DELETED!": "Delete ALL data, and install Airos. All your apps, documents and files will be DELETED!",
   "Magic Folder": "Magic Folder",
-  "We created Magic Folder on your desktop. All files stored here, will be moved to your new Airos. Do not store the files in it that you have already marked below.": "We created Magic Folder on your desktop. All files stored here, will be moved to your new Airos. Do not store the files in it that you have already marked below.",
+  "We've created the Magic Folder on your desktop. All files stored here will be moved to your new Airos. Do not store files in it that you have already marked below.": "We've created the Magic Folder on your desktop. All files stored here will be moved to your new Airos. Do not store files in it that you have already marked below.",
   "Open in Explorer": "Open in Explorer",
-  "Select files, what you really love.": "Select files, what you really love."
+  "Select files, what you really love.": "Select files, what you really love.",
+  "Documents": "Documents",
+  "Pictures": "Pictures",
+  "Videos": "Videos",
+  "Downloads": "Downloads",
+  "Musics": "Musics",
+  "Content of Desktop": "Content of Desktop"
 }
