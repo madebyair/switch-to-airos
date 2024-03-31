@@ -2,6 +2,9 @@ import { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import Button from "./elements/Button.tsx"
 import { invoke } from "@tauri-apps/api/core"
+import { useAtomState } from "@zedux/react"
+import { componentState } from "../state/componentState.tsx"
+import AppDetection from "./AppDetection.tsx"
 
 type Directory = {
     name: string,
@@ -16,12 +19,11 @@ const FilesToMove = () => {
         path: "Documents",
         selected: true
     }])
+    const [, setComponent] = useAtomState(componentState)
 
     useEffect(() => {
         invoke("whoami").then((r) => {
             const basePath = "C:\\Users\\" + r + "\\"
-
-            console.log(basePath)
 
             setDirectories([
                 {
@@ -66,8 +68,11 @@ const FilesToMove = () => {
 
     return (
         <div className="w-full h-full flex">
-            <div className="w-1/2 h-full">
+            <div className="w-1/2 h-full relative">
                 <h1 className="text-5xl font-bold">{t("Select files, what you really love.")}</h1>
+                <div className="absolute bottom-0">
+                    <Button label={t("Continue")} submit={() => setComponent(<AppDetection />)} />
+                </div>
             </div>
             <div className="w-1/2 h-full">
                 <div className="h-12 w-full flex">

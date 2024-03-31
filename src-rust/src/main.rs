@@ -8,6 +8,7 @@ mod requirements {
 
 pub mod whoami;
 pub mod create_magic_folder;
+pub mod load_apps;
 
 use requirements::{
     check_uefi::check_uefi,
@@ -18,6 +19,7 @@ use tauri_plugin_log::{Target, TargetKind};
 use whoami::whoami;
 use whoami::open_explorer;
 use create_magic_folder::create_magic_folder;
+use load_apps::load_apps;
 
 fn main() {
     fs::remove_dir_all("C:\\airos").unwrap_or(());
@@ -36,7 +38,7 @@ fn main() {
                 .build(),
         )
         .plugin(tauri_plugin_shell::init())
-        .invoke_handler(tauri::generate_handler![check_uefi, check_freespace, whoami, open_explorer, create_magic_folder])
+        .invoke_handler(tauri::generate_handler![check_uefi, check_freespace, whoami, open_explorer, create_magic_folder, load_apps])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
