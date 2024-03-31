@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next"
 import { useAtomState } from "@zedux/react"
 import { optionState } from "../state/appState.ts"
+import Button from "./elements/Button.tsx"
 
 const Summary = () => {
     const [ t ] = useTranslation()
@@ -8,8 +9,11 @@ const Summary = () => {
 
     return (
         <div className="w-full h-full flex">
-            <div className="w-1/2 h-full">
+            <div className="w-1/2 h-full relative">
                 <h1 className="text-5xl font-bold">{t("All set. Are you ready?")}</h1>
+                <div className="absolute bottom-0">
+                    <Button label={t("Install")} submit={() => {}} />
+                </div>
             </div>
             <div className="w-1/2 h-full">
                 <b>{t("Install method:")}</b> {option == "move" ? t("Keep data and install Airos") : t("Erase ALL data and install Airos")}<br />
