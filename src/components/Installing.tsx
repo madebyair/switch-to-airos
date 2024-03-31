@@ -1,8 +1,28 @@
 import { useTranslation } from "react-i18next"
 import { BarLoader } from "react-spinners"
+import { useEffect } from "react"
+import { info } from "@tauri-apps/plugin-log"
+import axios from "axios"
 
 const Installing = () => {
     const [ t ] = useTranslation()
+
+    useEffect(() => {
+        info("Starting installation process")
+        info("Fetching latest version of Gentoo (<3) Stage 3")
+        axios.get("https://gentoo.oskarniziol.workers.dev/").then((r) => {
+            const data = r.data
+            const lines = data.split("\n")
+
+            lines.forEach((line : string) => {
+                if (line.includes("stage3")) {
+                    const base = "https://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-systemd/"
+                    const file = line.split(" ")[0]
+                    info("Latest download URL of Gentoo Stage 3 is: " + base + file)
+                }
+            })
+        })
+    }, [])
 
     return (
         <div className="w-full h-full flex relative">
