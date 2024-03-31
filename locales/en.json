@@ -26,5 +26,15 @@
   "Downloads": "Downloads",
   "Musics": "Musics",
   "Content of Desktop": "Content of Desktop",
-  "Some of your files and directories are not listed here. Move them to the Magic Folder.": "Some of your files and directories are not listed here. Move them to the Magic Folder."
+  "Some of your files and directories are not listed here. Move them to the Magic Folder.": "Some of your files and directories are not listed here. Move them to the Magic Folder.",
+  "All set are. Are you ready?": "All set are. Are you ready?",
+  "Install method:": "Install method:",
+  "Files:": "Files:",
+  "Selected and from Magic Folder": "Selected and from Magic Folder",
+  "Apps": "Apps",
+  "We will not migrate your apps, although most of them will be reinstalled from the airstore.": "We will not migrate your apps, although most of them will be reinstalled from the airstore.",
+  "You can also save application data in the Magic Folder, which means you won't lose them.": "You can also save application data in the Magic Folder, which means you won't lose them.",
+  "While installing Airos, your computer may restart several times.": "While installing Airos, your computer may restart several times.",
+  "You will be able to use your computer normally until we send you a notification that your computer is ready to restart.": "You will be able to use your computer normally until we send you a notification that your computer is ready to restart.",
+  "If a window pops up asking you to accept the operation as Administrator, you must click Yes.": "If a window pops up asking you to accept the operation as Administrator, you must click Yes."
 }

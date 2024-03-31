@@ -2,13 +2,17 @@ import { BarLoader } from "react-spinners"
 import { useTranslation } from "react-i18next"
 import { useEffect } from "react"
 import { invoke } from "@tauri-apps/api/core"
+import { useAtomState } from "@zedux/react"
+import { componentState } from "../state/componentState.tsx"
+import Summary from "./Summary.tsx"
 
 const AppDetection = () => {
     const [ t ] = useTranslation()
+    const [, setComponent] = useAtomState(componentState)
 
     useEffect(() => {
         invoke("load_apps").then(() => {
-            // TODO go to summary
+            setComponent(<Summary />)
         })
     }, [])
 

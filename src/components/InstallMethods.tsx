@@ -3,10 +3,12 @@ import { useAtomState } from "@zedux/react"
 import { componentState } from "../state/componentState.tsx"
 import FilesToMove from "./FilesToMove.tsx"
 import { invoke } from "@tauri-apps/api/core"
+import { optionState } from "../state/appState.ts"
 
 const InstallMethods = () => {
     const [ t ] = useTranslation()
     const [, setComponent] = useAtomState(componentState)
+    const [, setOption] = useAtomState(optionState)
 
     return (
         <div className="w-full h-full flex">
@@ -18,6 +20,7 @@ const InstallMethods = () => {
                     onClick={() => {
                         setComponent(<FilesToMove />)
                         invoke("create_magic_folder")
+                        setOption("move")
                     }}
                     className="w-full h-44 bg-slate-300 hover:bg-slate-300/50 dark:bg-zinc-900 dark:hover:bg-zinc-900/70 transition duration-300 rounded-md">
                     <div className="h-1/2 ml-4 flex">
