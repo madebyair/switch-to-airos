@@ -22,8 +22,8 @@ const FilesToMove = () => {
     const [, setComponent] = useAtomState(componentState)
 
     useEffect(() => {
-        invoke("whoami").then((r) => {
-            const basePath = "C:\\Users\\" + r + "\\"
+        invoke<string>("whoami").then((r) => {
+            const basePath = "C:\\Users\\" + r.trim() + "\\"
 
             setDirectories([
                 {
@@ -71,7 +71,24 @@ const FilesToMove = () => {
             <div className="w-1/2 h-full relative">
                 <h1 className="text-5xl font-bold">{t("Select files, what you really love.")}</h1>
                 <div className="absolute bottom-0">
-                    <Button label={t("Continue")} submit={() => setComponent(<AppDetection />)} />
+                    <Button label={t("Continue")} submit={() => {
+                        setComponent(<AppDetection />)
+                        invoke<string>("whoami").then((r) => {
+                            let content = ""
+                            directories.forEach((dir) => {
+                                if (dir.selected) {
+                                    if (content == "") {
+                                        content = dir.path
+                                        return
+                                    }
+                                    content = content + "\n" + dir.path
+                                }
+                            })
+                            content = content + "\nC:\\Users\\" + r.trim() + "\\Magic Folder"
+                            content = content + "\nC:\\airos"
+                            invoke("write", { file: "C:\\airos\\move", content })
+                        })
+                    }} />
                 </div>
             </div>
             <div className="w-1/2 h-full">
