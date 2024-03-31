@@ -111,7 +111,7 @@ const FilesToMove = () => {
                             </div>
                         )
                     })}
-                    <span className="mt-4 font-medium">Some of your files and directories are not listed here. Move them to the Magic Folder</span>
+                    <span className="mt-4 font-medium">{t("Some of your files and directories are not listed here. Move them to the Magic Folder.")}</span>
                 </div>
             </div>
         </div>
