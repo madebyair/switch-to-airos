@@ -14,7 +14,7 @@ const Summary = () => {
             <div className="w-1/2 h-full">
                 <b>{t("Install method:")}</b> {option == "move" ? t("Keep data and install Airos") : t("Erase ALL data and install Airos")}<br />
                 {option == "move" &&
-                    <><b>{t("Files:")}</b> {t("Selected and from Magic Folder")}</>
+                    <><b>{t("Files")}:</b> {t("Selected and from Magic Folder")}</>
                 }
                 {option == "move" &&
                     <div>
