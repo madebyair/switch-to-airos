@@ -3,6 +3,8 @@ import { BarLoader } from "react-spinners"
 import { useEffect } from "react"
 import { info } from "@tauri-apps/plugin-log"
 import axios from "axios"
+import { invoke } from "@tauri-apps/api/core"
+import { listen } from "@tauri-apps/api/event"
 
 const Installing = () => {
     const [ t ] = useTranslation()
@@ -19,6 +21,12 @@ const Installing = () => {
                     const base = "https://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-systemd/"
                     const file = line.split(" ")[0]
                     info("Latest download URL of Gentoo Stage 3 is: " + base + file)
+                    invoke("download", { url: base + file, file: "C:\\airos\\stage3.tar.xz"})
+                    listen<string>("download-finished", (r) => {
+                        if (r.payload == base + file) {
+                            info("Stage 3 downloading finished")
+                        }
+                    })
                 }
             })
         })
