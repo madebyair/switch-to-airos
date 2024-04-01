@@ -55,6 +55,7 @@ const Installing = () => {
             <div className="w-1/2">
                 <b>{t("If a window pops up asking you to accept the operation as Administrator, you must click Yes.")}</b>
                 <p>{t("You can use your computer normally until we send you a notification that your computer is ready to restart.")}</p>
+                <p>{t("We are currently downloading files for airos, it may take 5-10 minutes to download the files, then we will send you a notification to restart your computer.")}</p>
             </div>
             <div className="absolute bottom-0 w-full">
                 <BarLoader
