@@ -38,7 +38,7 @@ export default function getMirror(coutry: string) {
         { country: "BE", url: "https://mirror.telepoint.bg/gentoo/" },
         // India
         { country: "IN", url: "https://gentoo.mirror.dhakacom.com/" },
-        // South Korea
+        // Korea (that normal)
         { country: "KR", url: "https://mirror.yongbok.net/gentoo/" },
         // Switzerland
         { country: "CH", url: "https://mirror.init7.net/gentoo/" },

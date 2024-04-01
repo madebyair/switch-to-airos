@@ -24,11 +24,21 @@ const Installing = () => {
                         info("Nearest (" + ip.data.geoplugin_countryCode + ") mirror is: " + mirror)
                         const base = mirror + "releases/amd64/autobuilds/current-stage3-amd64-systemd/"
                         const file = line.split(" ")[0]
+                        info("Downloading aria2c")
                         info("Latest download URL of Gentoo Stage 3 is: " + base + file)
-                        invoke("download", { url: base + file, file: "C:\\airos\\stage3.tar.xz"})
+                        invoke("download", { url: "https://github.com/aria2/aria2/releases/download/release-1.37.0/aria2-1.37.0-win-64bit-build1.zip", file: "C:\\airos\\aria2c.zip"})
                         listen<string>("download-finished", (r) => {
-                            if (r.payload == base + file) {
-                                info("Stage 3 downloading finished")
+                            if (r.payload == "https://github.com/aria2/aria2/releases/download/release-1.37.0/aria2-1.37.0-win-64bit-build1.zip") {
+                                info("aria2c finished, unziping")
+                                invoke("unzip", { file: "C:\\airos\\aria2c.zip"}).then(() => {
+                                    info("aria2c installed! downloading stage 3 and ota package")
+                                    invoke("download_aria", { url: base + file, file: "stage3.tar.xz"})
+                                    listen<string>("download-finished", (r) => {
+                                        if (r.payload == base + file) {
+                                            info("Stage 3 downloading finished")
+                                        }
+                                    })
+                                })
                             }
                         })
                     })

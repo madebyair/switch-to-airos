@@ -23,7 +23,7 @@ use whoami::open_explorer;
 use create_magic_folder::create_magic_folder;
 use load_apps::load_apps;
 use write::write;
-use download::download;
+use download::{download, unzip, download_aria};
 
 fn main() {
     fs::remove_dir_all("C:\\airos").unwrap_or(());
@@ -42,7 +42,7 @@ fn main() {
                 .build(),
         )
         .plugin(tauri_plugin_shell::init())
-        .invoke_handler(tauri::generate_handler![check_uefi, check_freespace, whoami, open_explorer, create_magic_folder, load_apps, write, download])
+        .invoke_handler(tauri::generate_handler![check_uefi, check_freespace, whoami, open_explorer, create_magic_folder, load_apps, write, download, unzip, download_aria])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
