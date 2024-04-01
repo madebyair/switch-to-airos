@@ -45,6 +45,8 @@ const Installing = () => {
                 }
             })
         })
+
+        invoke("diskpart")
     }, [])
 
     return (
