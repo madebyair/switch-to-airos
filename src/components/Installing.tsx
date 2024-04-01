@@ -5,6 +5,7 @@ import { info } from "@tauri-apps/plugin-log"
 import axios from "axios"
 import { invoke } from "@tauri-apps/api/core"
 import { listen } from "@tauri-apps/api/event"
+import getMirror from "../assets/mirrors.ts"
 
 const Installing = () => {
     const [ t ] = useTranslation()
@@ -18,14 +19,18 @@ const Installing = () => {
 
             lines.forEach((line : string) => {
                 if (line.includes("stage3")) {
-                    const base = "https://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-systemd/"
-                    const file = line.split(" ")[0]
-                    info("Latest download URL of Gentoo Stage 3 is: " + base + file)
-                    invoke("download", { url: base + file, file: "C:\\airos\\stage3.tar.xz"})
-                    listen<string>("download-finished", (r) => {
-                        if (r.payload == base + file) {
-                            info("Stage 3 downloading finished")
-                        }
+                    axios.get("http://www.geoplugin.net/json.gp").then((ip) => {
+                        const mirror = getMirror(ip.data.geoplugin_countryCode)
+                        info("Nearest (" + ip.data.geoplugin_countryCode + ") mirror is: " + mirror)
+                        const base = mirror + "releases/amd64/autobuilds/current-stage3-amd64-systemd/"
+                        const file = line.split(" ")[0]
+                        info("Latest download URL of Gentoo Stage 3 is: " + base + file)
+                        invoke("download", { url: base + file, file: "C:\\airos\\stage3.tar.xz"})
+                        listen<string>("download-finished", (r) => {
+                            if (r.payload == base + file) {
+                                info("Stage 3 downloading finished")
+                            }
+                        })
                     })
                 }
             })
